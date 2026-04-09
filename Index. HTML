@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+    font-family: Arial;
+}
+
+.container{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    width:300px;
+    text-align:center;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    background:#4facfe;
+    color:white;
+    border:none;
+}
+
+#error{
+    color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h2>Login</h2>
+
+<input type="text" id="username" placeholder="Username">
+<input type="password" id="password" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
+<p id="error"></p>
+
+<a href="signup.html">Create account</a>
+</div>
+
+<script>
+function login(){
+    let user = document.getElementById("username").value;
+    let pass = document.getElementById("password").value;
+
+    let savedUser = localStorage.getItem("user");
+    let savedPass = localStorage.getItem("pass");
+
+    let error = document.getElementById("error");
+
+    if(user == "" || pass == ""){
+        error.innerHTML = "Fill all fields!";
+    }
+    else if(user == savedUser && pass == savedPass){
+        localStorage.setItem("username", user);
+        window.location.href = "home.html";
+    }else{
+        error.innerHTML = "Wrong username or password!";
+    }
+}
+</script>
+
+</body>
+</html>
