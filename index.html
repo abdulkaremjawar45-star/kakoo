@@ -77,6 +77,20 @@ function login(){
         error.innerHTML = "Wrong username or password!";
     }
 }
+   
+function login(){
+    let user = document.getElementById("user").value;
+    let pass = document.getElementById("pass").value;
+
+    let savedUser = localStorage.getItem("user");
+    let savedPass = localStorage.getItem("pass");
+
+    if(user === savedUser && pass === savedPass){
+        alert("Seensa milkaa'e!");
+        window.location.href = "home.html";
+    }else{
+        alert("Username ykn password dogoggora!");
+    }
 </script>
 
 </body>
