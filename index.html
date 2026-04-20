@@ -56,42 +56,39 @@ button{
 
 <a href="signup.html">Create account</a>
 </div>
-
 <script>
-function login(){
+async function login(){
     let user = document.getElementById("username").value;
     let pass = document.getElementById("password").value;
 
-    let savedUser = localStorage.getItem("user");
-    let savedPass = localStorage.getItem("pass");
-
     let error = document.getElementById("error");
 
-    if(user == "" || pass == ""){
-        error.innerHTML = "Fill all fields!";
+    if(user === "" || pass === ""){
+        error.innerHTML = "Mee guutuu guuti!";
+        return;
     }
-    else if(user == savedUser && pass == savedPass){
-        localStorage.setItem("username", user);
+
+    let response = await fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            username: user,
+            password: pass
+        })
+    });
+
+    let data = await response.json();
+
+    if(data.success){
         window.location.href = "home.html";
     }else{
-        error.innerHTML = "Wrong username or password!";
+        error.innerHTML = "Username ykn password dogoggora!";
     }
 }
-   
-function login(){
-    let user = document.getElementById("user").value;
-    let pass = document.getElementById("pass").value;
-
-    let savedUser = localStorage.getItem("user");
-    let savedPass = localStorage.getItem("pass");
-
-    if(user === savedUser && pass === savedPass){
-        alert("Seensa milkaa'e!");
-        window.location.href = "home.html";
-    }else{
-        alert("Username ykn password dogoggora!");
-    }
 </script>
+
 
 </body>
 </html>
