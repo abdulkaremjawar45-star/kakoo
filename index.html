@@ -85,6 +85,21 @@ async function login(){
         window.location.href = "home.html";
     }else{
         error.innerHTML = "Username ykn password dogoggora!";
+
+
+        // Signup
+app.post("/signup", (req, res) => {
+    let { username, password } = req.body;
+
+    let userExists = users.find(u => u.username === username);
+
+    if(userExists){
+        res.json({ success: false, message: "User jira dura!" });
+    }else{
+        users.push({ username, password });
+        res.json({ success: true, message: "Account uumame!" });
+    }
+});
     }
 }
 </script>
